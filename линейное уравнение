@@ -1,0 +1,29 @@
+//линейное уравнение
+
+#include <iostream>
+
+using namespace std;
+
+float F(float a, float b){
+float x;
+x = -b/a;
+return x;
+}
+
+int main() {
+cout«"ax+b=0"«endl«"Введите коэффицент a:";
+float a,b;
+cin»a;
+cout«endl«"Введите коэффицент b:";
+cin»b;
+if (a == 0 && b == 0){
+cout«"X - любое";
+}
+else if(a == 0 && b != 0){
+cout«"Нет решений";
+}
+else{
+cout«endl«F(a,b);
+}
+return 0;
+}
