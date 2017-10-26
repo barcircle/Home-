@@ -1,0 +1,21 @@
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+
+int main() {
+    float x, y,y1;
+    cin>>x>>y;
+    y1 = x*x - 1;
+    if (y<=5 && y>=0){
+        if(y>y1){
+            cout<<"Не попал";
+        }
+        else{
+            cout<<"Попал";
+        }
+    }
+
+    return 0;
+}
