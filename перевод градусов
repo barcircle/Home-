@@ -1,0 +1,27 @@
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+float FC(float a){
+    a = (a-32)*5/9;
+    return a;
+}
+float CF(float a){
+    a = (a*9/5)+32;
+    return a;
+}
+
+
+int main() {
+    float f, c;
+    cout<<"Введите градусы по цельсию: ";
+    cin>>c;
+    cout<<endl<<c<<" C = "<<CF(c)<<" F"<<endl;
+    cout<<endl<<"Введите градусы по фаренгейту: ";
+    cin>>f;
+    cout<<endl<<f<<" F = "<<FC(f)<<" C"<<endl;
+
+
+    return 0;
+}
