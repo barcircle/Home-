@@ -1,0 +1,23 @@
+/*Напишите программу находящую в массиве сумму элементов
+ * делящихся либо на 72 либо на 27(не вместе).
+ */
+#include <iostream>
+
+using namespace std;
+
+int main(){
+    int a;
+    cin>>a;
+    int m[a];
+    for (int i = 0; i<=a; i++){
+        cin>>m[i];
+    }
+    int temp = 0;
+    for (int i = 0; i<=a; i++){
+        if ((m[i] % 72 == 0 && (m[i] % 27 != 0)) || (m[i] % 27 == 0 && (m[i] % 72 != 0))){
+            temp += m[i];
+        }
+    }
+    cout<<temp;
+    return 0;
+}
