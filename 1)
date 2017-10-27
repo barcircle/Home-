@@ -1,0 +1,117 @@
+/*Напишите функции min, max, avg, med, процедуру swap 
+принимающие в себя три вещественных аргумента и программу с примером из использования. 
+min - находит минимальное из трех значений, max - максимальное, avg - среднее арифметическое, 
+med  - медианное (гуглим, что это такое). swap - переставляет значения по кругу 
+( первое во второе, второе в третье, третье в первое).*/
+
+
+
+#include <iostream>
+
+using namespace std;
+
+double min(double a, double b, double c){
+    double temp;
+    if (a<=b && a<=c){
+        temp = a;
+    }
+    else if(b<=a && b<=c){
+        temp = b;
+    }
+    else {
+        temp = c;
+    }
+    return temp;
+}
+
+double max(double a, double b, double c){
+    double temp;
+    if (a>=b && a>=c){
+        temp = a;
+    }
+    else if(b>=a && b>=c){
+        temp = b;
+    }
+    else {
+        temp = c;
+    }
+    return temp;
+}
+
+double avg(double a, double b, double c){
+    double temp = (a+b+c)/3;
+    return temp;
+}
+
+double med(double a, double b, double c){
+    if (a<=b && a<=c){
+        if (b<=c){
+            return b;
+        }
+        else{
+            return c;
+        }
+    }
+    else if(b<=a && b<=c){
+        double temp = a;
+        a = b;
+        b = temp;
+        if (b<=c){
+            return b;
+        }
+        else{
+            return c;
+        }
+    }
+    else {
+        double temp = a;
+        a = c;
+        c = temp;
+        if (b<=c){
+            return b;
+        }
+        else{
+            return c;
+        }
+    }
+}
+
+void swap(double a, double b, double c){
+    double temp = a, temp2 = b;
+    a = c;
+    b = temp;
+    c = temp2;
+    cout<<a<<endl<<b<<endl<<c<<endl;
+}
+
+
+int main(){
+    double a, b, c;
+    int call = 0;
+    string mill;
+    for(int i = 1;i != call; i++){
+        cout<<"min, max, avg, med,swap для чисел a,b,c\n end - закончить программу\n"
+                " Пример использования: min 1 2 3\n";
+        cin>>mill;
+        if (mill == "end"){
+            return 0;
+        }
+        cin>>a>>b>>c;
+        if (mill == "min"){
+            cout<<min(a,b,c)<<endl;
+        }
+        else if (mill == "max"){
+            cout<<max(a,b,c)<<endl;
+        }
+        else if (mill == "avg"){
+            cout<<avg(a,b,c)<<endl;
+        }
+        else if (mill == "med"){
+            cout<<med(a,b,c)<<endl;
+        }
+        else if (mill == "swap"){
+            swap(a,b,c);
+        }
+    }
+    return 0;
+}
