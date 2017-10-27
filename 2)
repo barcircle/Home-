@@ -1,0 +1,21 @@
+/*Напишите рекурсивную функцию pow( быстрое возведение вещественного числа в целую степень)
+ * и пример программы её использующей. */
+#include <iostream>
+
+using namespace std;
+
+long long pow(long long a, long long b){
+    long long temp = a;
+    for (int i = 1; i<b; i++){
+        a = a*temp;
+    }
+    return a;
+}
+
+int main(){
+    long long a, b;
+    cout<<"Введите число и степень: ";
+    cin>>a>>b;
+    cout<<a<<"^"<<b<<" = "<<pow(a,b);
+    return 0;
+}
