@@ -1,0 +1,46 @@
+/*Напишите процедуру удаляющую из массива все элементы,
+ * которые уже встречались(повторы), и пример программы её использующую.
+ * Массив передаваемый в эту функцию должен уменьшиться,
+ * также как и переменная, передающая в функцию размер массива.
+*/
+
+
+#include <iostream>
+
+using namespace std;
+
+
+void povtor(int *m, int size) {
+    for (int i = 0; i < size; i++)
+    {
+        for (int j = i + 1; j < size ; j++)
+        {
+            if ( m[i] == m[j] ) 
+            {
+                for (int k = j; k < size -1; k++)
+                {
+                    m[k] = m[k + 1];
+                }
+                size -= 1;
+                if (m[i] == m[j])
+                {
+                    j--;
+                }
+            }
+        }
+    }
+    for(int i = 0; i<size;i++){
+        cout<<m[i];
+    }
+}
+
+int main(){
+    int n;
+    cin>>n;
+    int m[n];
+    for(int i = 0; i<n;i++){
+        cin>>m[i];
+    }
+    povtor(m,n);
+    return 0;
+}
