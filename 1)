@@ -109,7 +109,8 @@ int main(){
             cout<<med(a,b,c)<<endl;
         }
         else if (mill == "swap"){
-            cout<<swap(a,b,c)<<endl;
+            swap(&a,&b,&c);
+            cout<<a<<" "<<b<<" "<<c<<endl;
         }
     }
     return 0;
