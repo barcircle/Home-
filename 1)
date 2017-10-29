@@ -76,12 +76,11 @@ double med(double a, double b, double c){
     }
 }
 
-void swap(double a, double b, double c){
-    double temp = a, temp2 = b;
-    a = c;
-    b = temp;
-    c = temp2;
-    cout<<a<<endl<<b<<endl<<c<<endl;
+void swap(double * a, double * b, double * c){
+    double temp = * a, temp2 = * b;
+    * a = * c;
+    * b = temp;
+    * c = temp2;
 }
 
 
@@ -110,7 +109,7 @@ int main(){
             cout<<med(a,b,c)<<endl;
         }
         else if (mill == "swap"){
-            swap(a,b,c);
+            cout<<swap(a,b,c)<<endl;
         }
     }
     return 0;
