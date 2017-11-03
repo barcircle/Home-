@@ -8,46 +8,56 @@
 
 using namespace std;
 
-int dnei_v_mes(int x, int y){
-    if (((y % 400 == 0) || (y % 100 != 0 && y%4 == 0)) && x == 2)
-        x = (28 + (x+x/8)%2 + 2%x + 2*(1/x)) + 1;
+struct Data{
+    int ch;
+    int m;
+    int g;
+};
+struct Segment {
+    Data d1;
+    Data d2;
+};
+
+int dnei_v_mes(Data u){
+    if (((u.g % 400 == 0) || (u.g % 100 != 0 && u.g%4 == 0)) && u.m == 2)
+        u.m = (28 + (u.m+u.m/8)%2 + 2%u.m + 2*(1/u.m)) + 1;
     else
-        x = 28 + (x+x/8)%2 + 2%x + 2*(1/x);
-    return x;
+        u.m = 28 + (u.m+u.m/8)%2 + 2%u.m + 2*(1/u.m);
+    return u.m;
 }
 
-long long vsego(int a,int b,int c){
+long long vsego(Data p){
     long long vse_dni = 0;
 
-    for(int i = 1; i<c; i++){
+    for(int i = 1; i<p.g; i++){
         if ((i % 400 == 0) || (i % 100 != 0 && i%4 == 0))
             vse_dni += 366;
         else
             vse_dni += 365;
     }
-    for(int i = 1; i<b; i++){
-        vse_dni += dnei_v_mes(i, c);
+    for(int i = 1; i<p.m; i++){
+        vse_dni += dnei_v_mes(p);
     }
 
-    vse_dni += a;
+    vse_dni += p.ch;
     return vse_dni;
 
 }
 
-long long den_nedeli(int q, int w, int e){
-    return vsego(q,w,e) % 7;
+long long den_nedeli(Data dnii){
+    return vsego(dnii) % 7;
 }
 
-long long dnei(int ch,int m,int g,int ch2,int m2,int g2){
-    return abs(vsego(ch,m,g) - vsego(ch2,m2,g2));
+long long dnei(Segment re){
+    return abs(vsego(re.d1) - vsego(re.d2));
 }
 
-long long mes(int m,int g,int m2,int g2){
-    return abs((g*12 + m) -(g2*12 + m2));
+long long mes(Segment pre){
+    return abs((pre.d1.g*12 + pre.d1.m) -(pre.d2.g*12 + pre.d2.m));
 }
 
-long long let(int g, int g2){
-    return abs(g - g2);
+long long let(Segment prew){
+    return abs(prew.d1.g - prew.d2.g);
 }
 
 int main(){
@@ -67,19 +77,45 @@ int main(){
             return 0;
         else if (s == "nedel") {
             cin >> ch >> m >> g;
-            cout<<endl<<den_nedeli(ch,m,g)<<endl;
+            Data z;
+            z.g = g;
+            z.m = m;
+            z.ch = ch;
+            cout<<endl<<den_nedeli(z)<<endl;
         }
         else if (s == "dnei"){
             cin >> ch >> m >> g >> ch2 >> m2 >> g2;
-            cout<<endl<<dnei(ch, m, g, ch2, m2, g2)<<endl;
+            Segment z;
+            z.d1.ch = ch;
+            z.d1.m = m;
+            z.d1.g = g;
+            z.d2.g = g2;
+            z.d2.m = m2;
+            z.d2.ch = ch2;
+
+            cout<<endl<<dnei(z)<<endl;
         }
         else if (s == "mes"){
             cin >> ch >> m >> g >> ch2 >> m2 >> g2;
-            cout<<endl<<mes(m, g, m2, g2)<<endl;
+            Segment z;
+            z.d1.ch = ch;
+            z.d1.m = m;
+            z.d1.g = g;
+            z.d2.g = g2;
+            z.d2.m = m2;
+            z.d2.ch = ch2;
+            cout<<endl<<mes(z)<<endl;
         }
         else if (s == "let"){
             cin >> ch >> m >> g >> ch2 >> m2 >> g2;
-            cout<<endl<<let(g, g2)<<endl;
+            Segment z;
+            z.d1.ch = ch;
+            z.d1.m = m;
+            z.d1.g = g;
+            z.d2.g = g2;
+            z.d2.m = m2;
+            z.d2.ch = ch2;
+            cout<<endl<<let(z)<<endl;
         }
 
     }
