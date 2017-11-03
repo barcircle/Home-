@@ -1,0 +1,187 @@
+/*Напишите программу для работы с оценками за сессию студентов.
+В программе должна присутствовать структура хранящая ФИО,
+ оценки за 6 экзаменов для каждого ученика и умеющая (соответствующими методами)
+ вычислять средний балл студента,
+ наличие стипендии(стипендия начисляется закрывшим сессию без троек),
+ задолженностей (сессия считается закрытой без долгов, если все оценки выше 2)
+в программе должны быть функции для работы с массивом студентов
+ находящие средний балл(всех без двух лучших и двух худших),
+ количества стипендиатов, должников и отчисленных(более двух долгов)
+*/
+#include <iostream>
+
+
+int otchisl(int * arr, int y) {
+    int kolvo = 0;
+    for(int i= 0; i < y; i++){
+        if (arr[i] >= 2){
+            kolvo++;
+        }
+    }
+    return kolvo;
+}
+
+int dolg(int * arr, int y) {
+    int kolvo = 0;
+    for(int i= 0; i < y; i++){
+        if (arr[i] == 1){
+            kolvo++;
+        }
+    }
+    return kolvo;
+}
+
+int step(int * arr, int y){
+    int kolvo = 0;
+    for(int i= 0; i < y; i++){
+        if (arr[i] == 1){
+            kolvo++;
+        }
+    }
+    return kolvo;
+}
+
+double vsesred(int y, double * z){
+    if (y-1<5){
+        return 0;
+    }
+    double max = 0, min = 0, max2 = 0, min2 = 0;
+    double temp = 0;
+
+    for(int i = 0; i<y-1; i++){
+        temp += z[i];
+    }
+
+
+    for(int i = 0; i<y-1; i++){
+        if(z[i] <= min)
+            min = z[i];
+        if(z[i] >= max)
+            max = z[i];
+    }
+
+
+    return temp;
+}
+
+
+
+using namespace std;
+
+int main() {
+    int a;
+    cout << "Введите количество учеников: ";
+    cin >> a;
+    string m[a + 1][12];
+    m[0][0] = "ФИО   ";
+    m[0][1] = "О";
+    m[0][2] = "ц";
+    m[0][3] = "е";
+    m[0][4] = "н";
+    m[0][5] = "к";
+    m[0][6] = "и   ";
+    m[0][7] = "Ср. Балл";
+    m[0][8] = "Стипендия";
+    m[0][9] = "Задолжности";
+    for (int i = 1; i <= a; i++){
+        cout << "Введите ФИО ученика :";
+        for(int h = 0; h<=2; h++)
+            cin>>m[i][h];
+        cout<< "Введите оценки :";
+        for(int j = 3; j<9; j++)
+            cin>>m[i][j];
+    }
+
+    int temp = 0, max = 0;
+    for(int i = 1; i<a+1; i++){
+        for (int j = 0; j<=2; j++){
+            temp += m[i][j].length();
+        }
+        if(temp >= max)
+            max = temp;
+        temp = 0;
+    }
+
+
+    int sr = 0;
+    double sper[a];
+    for (int i = 1; i <= a; i++){
+        for(int j = 3; j < 9; j++){
+            string str = m[i][j];
+            sr += str[0]  - 0x30;
+        }
+        double x = (double)sr/6;
+        sper[i-1] = (double)sr/6;
+        string str = to_string(x);
+        m[i][9] = "    " + str;
+        sr = 0;
+    }
+
+    int stepuxa[a];
+    for(int  i = 1; i<=a; i++){
+        for(int j = 3; j < 9; j++){
+            if (m[i][j] == "4" || m[i][j] == "5"){
+                m[i][10] = "   Да";
+                stepuxa[i-1] = 1;
+        }
+            else {
+                m[i][10] = "   Нет";
+                stepuxa[i-1] = 0;
+                j=10;
+            }
+        }
+    }
+
+
+    int tamp = 0;
+    int mas[a];
+    for(int  i = 1; i<=a; i++){
+        for(int j = 3; j < 9; j++){
+            if(m[i][j] == "2"){
+                tamp++;
+            }
+        }
+        mas[i-1] = tamp;
+        if (tamp == 0){
+            m[i][11] = "   Нет";
+        }
+        else{
+            string str = to_string(tamp);
+            m[i][11] = "    " + str;
+        }
+        tamp = 0;
+    }
+
+
+
+//вывод
+    for(int i = 0; i<a+1; i++){
+        for (int j = 0; j<12; j++){
+            cout<<m[i][j]<<" ";
+            if(j == 2 && i>=1){
+                for (int h = 0; h<=2; h++){
+                    temp += m[i][h].length();
+                }
+                temp = (max - temp)/2;
+                for(int h = 0; h<temp; h++)
+                    cout<<" ";
+                temp = 0;
+            }
+            else if(i == 0 && j == 0){
+                temp = (max - m[0][0].length())/2;
+                for(int h = 0; h<temp; h++)
+                    cout<<" ";
+                temp = 0;
+            }
+        }
+        cout<<endl;
+    }
+    cout<<"\nОтчислено человек: "<<otchisl(mas, a);
+    cout<<"\nДолжников: "<<dolg(mas, a);
+    cout<<"\nСтипендиатов: "<<step(mas, a);
+    cout<<"\nСредний балл: "<<vsesred(a+1, sper);
+
+
+
+    return 0;
+}
