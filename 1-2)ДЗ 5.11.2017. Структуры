@@ -1,0 +1,89 @@
+/*Напишите программу для работы с датами согласно григорианскому календарю.
+ В программе должны присутствовать:
+* структура хранящая год,месяц, число и умеющая(с помощью соответствующего метода)
+ определять по дате день недели
+* 3 функции определяющие сколько лет, месяцев и дней прошло между двумя датами*/
+
+#include <iostream>
+
+using namespace std;
+
+int dnei_v_mes(int x, int y){
+    if (((y % 400 == 0) || (y % 100 != 0 && y%4 == 0)) && x == 2)
+        x = (28 + (x+x/8)%2 + 2%x + 2*(1/x)) + 1;
+    else
+        x = 28 + (x+x/8)%2 + 2%x + 2*(1/x);
+    return x;
+}
+
+long long vsego(int a,int b,int c){
+    long long vse_dni = 0;
+
+    for(int i = 1; i<c; i++){
+        if ((i % 400 == 0) || (i % 100 != 0 && i%4 == 0))
+            vse_dni += 366;
+        else
+            vse_dni += 365;
+    }
+    for(int i = 1; i<b; i++){
+        vse_dni += dnei_v_mes(i, c);
+    }
+
+    vse_dni += a;
+    return vse_dni;
+
+}
+
+long long den_nedeli(int q, int w, int e){
+    return vsego(q,w,e) % 7;
+}
+
+long long dnei(int ch,int m,int g,int ch2,int m2,int g2){
+    return abs(vsego(ch,m,g) - vsego(ch2,m2,g2));
+}
+
+long long mes(int m,int g,int m2,int g2){
+    return abs((g*12 + m) -(g2*12 + m2));
+}
+
+long long let(int g, int g2){
+    return abs(g - g2);
+}
+
+int main(){
+    int ch, m, g, ch2, m2, g2;
+    string s;
+    for(int i = 2; i!=1; i++) {
+        cout << "день недели - nedel\n"
+                "дней между датами - dnei\n"
+                "месяцев между датами - mes\n"
+                "лет между датами - let"
+                " end - закончить программу\n"
+                " Пример использования: let 3 11 2017 3 11 2018\n"
+                "1\n"
+                "end\n";
+        cin >> s;
+        if (s == "end")
+            return 0;
+        else if (s == "nedel") {
+            cin >> ch >> m >> g;
+            cout<<endl<<den_nedeli(ch,m,g)<<endl;
+        }
+        else if (s == "dnei"){
+            cin >> ch >> m >> g >> ch2 >> m2 >> g2;
+            cout<<endl<<dnei(ch, m, g, ch2, m2, g2)<<endl;
+        }
+        else if (s == "mes"){
+            cin >> ch >> m >> g >> ch2 >> m2 >> g2;
+            cout<<endl<<mes(m, g, m2, g2)<<endl;
+        }
+        else if (s == "let"){
+            cin >> ch >> m >> g >> ch2 >> m2 >> g2;
+            cout<<endl<<let(g, g2)<<endl;
+        }
+
+    }
+
+
+    return 0;
+}
