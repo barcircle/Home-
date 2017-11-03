@@ -45,22 +45,38 @@ double vsesred(int y, double * z){
     if (y-1<5){
         return 0;
     }
-    double max = 0, min = 0, max2 = 0, min2 = 0;
-    double temp = 0;
-
+    double max = 0, min = 5, max2 = 0, min2 = 5;
+    int  q, w, e, r;
     for(int i = 0; i<y-1; i++){
-        temp += z[i];
-    }
-
-
-    for(int i = 0; i<y-1; i++){
-        if(z[i] <= min)
-            min = z[i];
-        if(z[i] >= max)
+        if(z[i] >= max){
             max = z[i];
+            q = i;
+        }
+        if(z[i] <= min){
+            w = i;
+            min = z[i];
+        }
+    }
+    for(int i = 0; i<y-1; i++){
+        if(i != max && i != min){
+            if(z[i] >= max2){
+                e = i;
+                max2 = z[i];
+            }
+            if(z[i] <= min2){
+                r = i;
+                min2 = z[i];
+            }
+        }
     }
 
-
+    double temp = 0;
+    for(int i = 0; i<y-1; i++){
+        if(i != max && i != min && i != max2 && i != min2){
+            temp += z[i];
+        }
+    }
+    //temp = temp/(y-1-4);
     return temp;
 }
 
@@ -123,7 +139,7 @@ int main() {
             if (m[i][j] == "4" || m[i][j] == "5"){
                 m[i][10] = "   Да";
                 stepuxa[i-1] = 1;
-        }
+            }
             else {
                 m[i][10] = "   Нет";
                 stepuxa[i-1] = 0;
