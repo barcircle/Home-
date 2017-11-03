@@ -1,0 +1,21 @@
+/*Напишите программу, которая подсчитывает,
+ * сколько раз в строке встретился символ ‘w’*/
+
+
+#include <string>
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    char str [256];
+    cin>>str;
+    int k = 0;
+    for (int i=1; i<sizeof(str); i++) {
+        if (str[i] == 'w')
+            k++;
+    }
+    cout<<k;
+    return 0;
+}
