@@ -11,6 +11,9 @@
 #include <iostream>
 
 
+using namespace std;
+
+
 int otchisl(int * arr, int y) {
     int kolvo = 0;
     for(int i= 0; i < y; i++){
@@ -58,7 +61,7 @@ double vsesred(int y, double * z){
         }
     }
     for(int i = 0; i<y-1; i++){
-        if(i != max && i != min){
+        if(i != q && i != w){
             if(z[i] >= max2){
                 e = i;
                 max2 = z[i];
@@ -72,17 +75,14 @@ double vsesred(int y, double * z){
 
     double temp = 0;
     for(int i = 0; i<y-1; i++){
-        if(i != max && i != min && i != max2 && i != min2){
+        if(i != q && i != w && i != e && i != r){
             temp += z[i];
         }
     }
-    //temp = temp/(y-1-4);
+    temp = temp/(y-1-4);
     return temp;
 }
 
-
-
-using namespace std;
 
 int main() {
     int a;
@@ -194,7 +194,7 @@ int main() {
     }
     cout<<"\nОтчислено человек: "<<otchisl(mas, a);
     cout<<"\nДолжников: "<<dolg(mas, a);
-    cout<<"\nСтипендиатов: "<<step(mas, a);
+    cout<<"\nСтипендиатов: "<<step(stepuxa, a);
     cout<<"\nСредний балл: "<<vsesred(a+1, sper);
 
 
