@@ -1,0 +1,26 @@
+/*Для данного целого x найти значение следующей функции f, принимаю-
+щей значения целого типа:
+f (x) = 2·x, если x < −2 или x > 2,
+−3·x, в противном случае.*/
+
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+int main(){
+    cout<<"Введите число :";
+    double val;
+    cin>>val;
+    if (val != ((double)((int)val))){
+        cout<<"Введите целое число!!!";
+        return 0;
+    }
+    
+    if (abs(val) > 2){
+        cout<<2*val;
+    }
+    else
+        cout<<-3*val;
+    return 0;
+}
