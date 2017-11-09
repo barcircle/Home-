@@ -1,0 +1,28 @@
+#include <iostream>
+
+using namespace std;
+
+int main(){
+    double val;
+    cout<<"Введите год :";
+    cin>>val;
+    if (val == 0){
+        cout<<"Неправильный ввод!!!";
+        return 0;
+    }
+
+
+    if (val != ((double)((int)val))){
+        cout<<"Введите целое число!!!";
+        return 0;
+    }
+    int n = (int)val;
+
+    if ((n % 400 == 0) || (n % 100 != 0 && n%4 == 0))
+        cout<<"Дней в этом году - 366";
+    else
+        cout<<"Дней в этом году - 365";
+
+
+    return 0;
+}
