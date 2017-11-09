@@ -1,0 +1,55 @@
+#include <iostream>
+
+using namespace std;
+
+int main(){
+    double val;
+    cout<<"Введите целое число, в пределах от 1 до 999 :";
+    cin>>val;
+    if (val == 0){
+        cout<<"Нулевое число";
+    }
+
+
+    if (val != ((double)((int)val))){
+        cout<<"Введите целое число!!!";
+        return 0;
+    }
+    int n = (int)val;
+
+    if(val<0){
+        cout<<n<<" - отрицательное";
+    }
+    else{
+        cout<<n<<" - положительное";
+    }
+
+
+    if(n%10 == n){
+        if(n%2 == 0){
+            cout<<" четное число";
+        }
+        else{
+            cout<<" нечетное число";
+        }
+    }
+    else if(n%100 == n){
+        if(n%2 == 0){
+            cout<<" двузначное четное число";
+        }
+        else{
+            cout<<" двузначное нечетное число";
+        }
+    }
+    else{
+        if(n%2 == 0){
+            cout<<" четное число";
+        }
+        else{
+            cout<<" нечетное число";
+        }
+    }
+
+
+    return 0;
+}
