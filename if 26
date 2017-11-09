@@ -1,0 +1,24 @@
+/*Для данного вещественного x найти значение следующей функции f,
+принимающей вещественные значения:
+−x, если x ≤ 0,
+f (x) = x^2, если 0 < x < 2,
+        4, если x ≥ 2.*/
+
+#include <iostream>
+
+using namespace std;
+
+int main(){
+    double x;
+    cout<<"Введите x :";
+    cin>>x;
+    if (x <= 0){
+        cout<<"\n"<<-x;
+    }
+    else if (x<2){
+        cout<<"\n"<<x*x;
+    } 
+    else
+        cout<<4;
+    return 0;
+}
