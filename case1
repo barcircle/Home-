@@ -1,0 +1,35 @@
+#include <iostream>
+
+using namespace std;
+
+int main(){
+    int a;
+    cin>>a;
+    switch (a){
+        case 1:
+            cout<<"\nПонедельник";
+            break;
+        case 2:
+            cout<<"\nВторник";
+            break;
+        case 3:
+            cout<<"\nСреда";
+            break;
+        case 4:
+            cout<<"\nЧетверг";
+            break;
+        case 5:
+            cout<<"\nПятница";
+            break;
+        case 6:
+            cout<<"\nСуббота";
+            break;
+        case 7:
+            cout<<"\nВоскресенье";
+            break;
+        default:
+            cout<<"\n Nope";
+    }
+
+    return 0;
+}
