@@ -1,0 +1,29 @@
+#include <iostream>
+
+using namespace std;
+
+int main(){
+    int a;
+    cin>>a;
+    switch (a){
+        case 1:
+            cout<<"1 - Плохо.";
+            break;
+        case 2:
+            cout<<"2 - Неудовлетворительно";
+            break;
+        case 3:
+            cout<<"3 - Удовлетворительно";
+            break;
+        case 4:
+            cout<<"4 - Хорошо";
+            break;
+        case 5:
+            cout<<"5 - Отлично";
+            break;
+        default:
+            cout<<"\n Nope";
+    }
+
+    return 0;
+}
