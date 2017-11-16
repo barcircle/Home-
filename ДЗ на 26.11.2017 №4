@@ -1,0 +1,129 @@
+/*Напишите программу, которая выводит все натуральные числа-палиндромы длины n,
+ * делящиеся на 9, в порядке возрастания.
+*/
+
+
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+
+
+
+int print_palindrom(int n){
+    switch (n) {
+        case 0: {
+            cout<<0;
+            break;
+        }
+        case 1:{
+            cout<<9;
+            break;
+        }
+        case 2:{
+            cout<<99;
+            break;
+        }
+        default: {
+
+            if (n%2 == 0){
+                int cost = 9;
+                for(int j = 1; j<n/2; j++){
+                    cost+=9*pow(10,j);
+                }
+                int temp = n/2;
+                for(int i = 9; i<=cost; i+=9){
+                    int sl = i, d = 0;
+                    while (sl != 0) {
+                        d++;
+                        sl /= 10;
+                    }
+                    if(d == temp){
+                        long y = 0;
+                        sl = i;
+                        while(sl)
+                        {
+                            y = y*10 + sl%10;
+                            sl /= 10;
+                        }
+                        d = 0;
+                        long s = y;
+                        while (s != 0) {
+                            d++;
+                            s /= 10;
+                        }
+                        if (d == temp){
+                            cout<<i<<y<<endl;
+                        }
+                        else{
+                            cout<<i;
+                            for(int r = 0; r<temp-d; r++){
+                                cout<<0;
+                            }
+                            cout<<y<<endl;
+                        }
+                    }
+                }
+            }
+
+            else{
+
+                int temp = n/2 + 1, per = 0;
+
+                per=pow(10,temp-1)+7;
+                int cost = 9;
+                for(int j = 1; j<temp; j++){
+                    cost+=9*pow(10,j);
+                }
+
+                int tem = 6;
+                for(int i = per; i<=cost; i+=8){
+                    if (tem == 10){
+                        i+=9;
+                    }
+                    else if(tem == 5){
+                        i+=1;
+                    }
+
+                    long y = 0;
+                    int sl = i/10;
+                    while(sl)
+                    {
+                        y = y*10 + sl%10;
+                        sl /= 10;
+                    }
+
+                    int d = 0;
+                    long s = y;
+                    while (s != 0) {
+                        d++;
+                        s /= 10;
+                    }
+                    if (d == temp){
+                        cout<<i<<y<<endl;
+                    }
+                    else{
+                        cout<<i;
+                        for(int r = 0; r<temp-d+1; r++){
+                            cout<<0;
+                        }
+                        cout<<y<<endl;
+                    }
+
+
+                    tem++;
+                }
+            }
+        }
+    }
+}
+
+
+int main(){
+    int n;
+    cin>>n;
+    print_palindrom(n);
+
+    return 0;
+}
