@@ -1,0 +1,45 @@
+
+#include <iostream>
+
+int dig_trench(int** arr, int x){
+    int temp;
+    for(int i = 0; i<x; i++){
+        for(int j = 0; j<x; j++){
+            temp = abs(i - j + x);
+            if (temp > x)
+                temp = x - (temp - x);
+            arr[i][j] = temp;
+            //cout<<arr[i][j]<<"   ";
+        }
+        //cout<<endl;
+    }
+
+}
+
+
+using namespace std;
+
+
+int main(){
+    int l;
+    cin>>l;
+    int p[l][l];
+
+
+    int **two = new int *[l];
+
+    for (int i = 0; i < l; i++) {
+        two[i] = new int [l];
+        for (int j = 0; j < l; j++)
+            two[i][j] = i*l + j;
+    }
+
+    dig_trench(two, l);
+    for(int i = 0; i<l; i++){
+        for(int j = 0; j<l; j++){
+            cout<<two[i][j]<<"  ";
+        }
+        cout<<endl;
+    }
+    return 0;
+}
