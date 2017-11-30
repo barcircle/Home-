@@ -1,0 +1,112 @@
+#include <iostream>
+
+using namespace std;
+
+int main(){
+    int n1 = 40 + rand()%11;
+    int *a = new int[n1];
+
+    for(int i = 0; i<n1; i++){
+        a[i] = 10 + rand()%90;
+        cout<<a[i]<<" ";
+    }
+
+    cout<<endl;
+
+    int n2 = 40 + rand()%11;
+    int *b = new int[n2];
+
+    for(int i = 0; i<n2; i++){
+        b[i] = 10 + rand()%90;
+        cout<<b[i]<<" ";
+    }
+
+    cout<<endl;
+
+    int *c1 = new int[n1+n2];
+
+
+    int min1 = a[0], min2 = b[0];
+    int ntemp = n1, tempj, ntemp2 = n2;
+    for(int i = 0; i<(n1+n2); i++){
+        if(i<n1){
+            for(int j = 0; j<ntemp; j++){
+                if(a[j]<=min1){
+                    min1 = a[j];
+                    tempj = j;
+                }
+            }
+            swap(a[ntemp-1], a[tempj]);
+            c1[i] = min1;
+            ntemp--;
+            min1 = a[0];
+            cout<<c1[i]<<" ";
+        }
+        else{
+            for(int j = 0; j<ntemp2; j++){
+                if(b[j]<=min2){
+                    min2 = b[j];
+                    tempj = j;
+                }
+            }
+            swap(b[ntemp2-1], b[tempj]);
+            c1[i] = min2;
+            ntemp2--;
+            min2 = a[0];
+            cout<<c1[i]<<" ";
+        }
+    }
+
+
+    cout<<endl;
+    int *c2 = new int[n1+n2];
+
+
+    for(int i = 0; i<(n1+n2); i++){
+        if(i<n1){
+            c2[i] = c1[i];
+            cout<<c2[i]<<" ";
+        }
+        else{
+            c2[i] = c1[n1+n2-(i-n1) - 1];
+            cout<<c2[i]<<" ";
+        }
+    }
+
+
+    cout<<endl;
+    int *c3 = new int[n1+n2];
+
+
+    for(int i = 0; i<(n1+n2); i++){
+        if(i<n1){
+            c3[i] = c1[n1 - i - 1];
+            cout<<c3[i]<<" ";
+        }
+        else{
+            c3[i] = c1[i];
+            cout<<c3[i]<<" ";
+        }
+    }
+
+
+    cout<<endl;
+    int *c4 = new int[n1+n2];
+
+
+    for(int i = 0; i<(n1+n2); i++){
+        if(i<n1){
+            c4[i] = c3[i];
+            cout<<c4[i]<<" ";
+        }
+        else{
+            c4[i] = c2[i];
+            cout<<c4[i]<<" ";
+        }
+    }
+
+
+
+
+    return 0;
+}
